@@ -1,4 +1,4 @@
-@import url("normalize.css");
+﻿@import url("normalize.css");
 
 *{
 -webkit-box-sizing: border-box;
@@ -506,7 +506,7 @@ a.youtube{
 
 /*для Телефолов*/
 
-@media screen and (max-device-width: 700px) {
+@media screen and (max-device-width: 1100px) {
     /*
     *{
         line-height: normal;
