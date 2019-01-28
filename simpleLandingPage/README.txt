@@ -1,6 +1,6 @@
 My very first site
 Made from free PSD layout: http://psd-html-css.ru/templates/prostoy-psd-maket-landing-page
-It is not optimized for mobile devices and has many mistakes like copying already pyped code, but it was my first attempt to make a site
+It has many mistakes like copying already pyped code, but it was my first attempt to make a site
 
 **IMPORTANT**
 
