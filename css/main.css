@@ -1,0 +1,264 @@
+@import url(normalize.css);
+@import url('https://fonts.googleapis.com/css?family=Sarabun:300,400,400i,700&subset=latin-ext');
+
+:root{
+  --darkBlue: #022d41;
+  --platinum: #EAE3E6;
+  --lightGray: #6E92A1;
+  --lightgreen: #477186;
+  font-family: 'Sarabun', sans-serif;
+  font-size: 16px;
+}
+
+@keyframes link {
+  100%{
+/*     border-bottom: 2px solid; */
+    text-decoration: underline;
+    color: var(--lightGray);
+  }
+ }
+
+@keyframes image{
+  100%{
+    transform: scale(1.2);
+  }
+}
+
+@keyframes imagecaption{
+  100%{
+    opacity: 1;
+  }
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	margin: 0 auto;
+	padding: 15px 0;
+	max-height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: var(--darkBlue);
+  z-index: 100;
+}
+
+header .container{
+  flex-direction: row;
+  jjustify-content: space-between;
+}
+
+header .logo{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--platinum);
+}
+
+header .logo span{
+  color: var(--lightGray);
+  font-weight: normal;
+}
+
+header nav{
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.22222222rem;
+  font-style: italic;
+}
+
+header a{
+  color: var(--platinum);
+  text-decoration: none;
+}
+
+header a:hover{
+  animation-name: link;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+/* end header */
+
+/* welcome-section */
+
+#welcome-section{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--darkBlue);
+  color: var(--platinum);
+}
+
+#welcome-section figure{
+  width: 200px;
+}
+
+#welcome-section p{
+  color: var(--lightGray);
+}
+
+/* end welcome-section */
+
+/* work */
+
+.work-header{
+  margin: 50px 0;
+  color: var(--darkBlue);
+  text-align: center;
+}
+
+.work .container{
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.work a{
+  display: block;
+  width: 100%;
+}
+
+.work figure{
+  width: 100%;
+  position: relative;
+  color: var(--platinum);
+  overflow: hidden;
+  border: 1px solid var(--platinum);
+  border-radius: 3px;
+}
+
+.work figcaption{
+  position: absolute;
+	display: block;
+	background-color: var(--darkBlue);
+	bottom: 0;
+	width: 100%;
+	z-index: 10;
+	padding: 10px 15px;
+	font-size: 1.185185rem;
+  opacity: 0.8;
+}
+
+.work a:hover img{
+  animation-name: image;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.work a:hover figcaption{
+  animation-name: imagecaption;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+/* end work */
+
+/* contacts */
+
+.contact{
+  background: var(--lightgreen);
+  color: var(--platinum);
+  text-align: center;
+  padding: 30px 0;
+}
+
+.contact .links{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.contact a{
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--darkBlue);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  padding: 20px;
+  margin: 0 30px;
+}
+
+.contact p{
+  margin-bottom: 20px;
+}
+
+.emailform{
+  padding: 10px 0 20px 0;
+  width: 70%;
+  margin: 30px auto;
+  border: 3px ridge #032536;
+}
+
+input{
+  padding: 10px 15px;
+  outline: none;
+}
+
+input[type="email"]{
+  border-radius: 10px 0 0 10px;
+  margin: 0;
+}
+
+input[type="submit"]{
+  border-radius: 0 10px 10px 0;
+  margin: 0;
+  margin-left: -3px;
+}
+
+/* footer */
+
+footer{
+  background: var(--darkBlue);
+  color: var(--platinum);
+  text-align: center;
+  padding: 20px;
+}
+
+@media screen and (max-device-width: 780px) {
+
+  :root{
+    font-size: 20px;
+  }
+
+  #welcome-section{
+    height: 50vh;
+  }
+
+  .work .container{
+    grid-template-columns: 1fr;
+    padding: 0 20px
+  }
+
+  .contact{
+    margin-top: 20px;
+  }
+}
