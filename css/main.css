@@ -67,7 +67,7 @@ header .container{
 }
 
 header .logo{
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--platinum);
 }
@@ -83,7 +83,7 @@ header nav{
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	font-size: 1.22222222rem;
+	font-size: 1.5rem;
   font-style: italic;
 }
 
@@ -257,8 +257,8 @@ footer{
     grid-template-columns: 1fr;
     padding: 0 20px
   }
-
-  .contact{
-    margin-top: 20px;
+	
+  .work a{
+     margin-bottom: 20px;
   }
 }
