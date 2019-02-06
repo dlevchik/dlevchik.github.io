@@ -5,7 +5,8 @@ html,body{
 	padding: 0;
 	margin: 0;
 	font-family: 'Ubuntu', sans-serif;
-	font-size: 25px;
+	font-size: 20px;
+	overflow: hidden;
 }
 
 h1,h2,h3,h4,h5,h6{
