@@ -143,6 +143,12 @@ header a:hover{
   width: 100%;
 }
 
+.govno{
+   margin: 0 auto; 
+   margin-bottom: 20px;
+   width: 50%;
+}
+
 .work figure{
   width: 100%;
   position: relative;
@@ -260,6 +266,9 @@ footer{
 	
   .work a{
      margin-bottom: 20px;
-     width: 100% !important;
+  }
+  
+  a.govno{
+     width: 100%;	
   }
 }
