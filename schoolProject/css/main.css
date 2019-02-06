@@ -5,13 +5,18 @@ html,body{
 	padding: 0;
 	margin: 0;
 	font-family: 'Ubuntu', sans-serif;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 h1,h2,h3,h4,h5,h6{
 	font-weight: 500;
 	font-style: italic;
 	border-bottom: 2px solid gray;
+}
+
+h1{
+	font-size: 80px;
+	border-width: 3px;
 }
 
 *{
@@ -36,13 +41,16 @@ figure{
 section{
 	height: 100vh;
 	border-bottom: 1px solid black;
+}
+
+section, .container{
 	display: flex;
 	align-items: center;
-	justify-content: space-around;	
+	justify-content: space-around;
 }
 
 li{
-	margin-left: 10px;
+	margin-left: 20px;
 }
 
 section article{
@@ -55,6 +63,7 @@ section article{
 section:nth-child(1){
 	background: linear-gradient(to right, hsla(53,86%,49%,0.7), hsla(78,78%,69%,0.5), hsla(99,90%,64%,0.7)), url(../img/thinkingGirl.jpg) no-repeat;
 	background-size: cover;
+	flex-direction: column;
 }
 
 section:nth-child(2){
@@ -75,4 +84,23 @@ section:nth-child(4){
 section:nth-child(5){
 	background: linear-gradient(to right, hsla(38,46%,55%,0.7), hsla(73,61%,69%,0.5), hsla(73,67%,45%,0.7)), url(../img/color.jpg) no-repeat;
 	background-size: cover;
+}
+
+section:nth-child(2n){
+	flex-direction: row-reverse;
+}
+
+@media screen and (max-device-width: 780px) {
+	section{
+		flex-direction: column !important; 
+		font-size: 25px;
+		height: auto;
+		background-position: 50% 50%;
+	}
+
+	figure, section article{
+		max-width: 90%;
+		margin: 20px 0;
+		width: 90%;
+	}
 }
