@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,400i,500,500i&subset=cyrillic,cyrillic-ext');
+@import url(normalize.css);
+
+html,body{
+	padding: 0;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 20px;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-weight: 500;
+	font-style: italic;
+	border-bottom: 2px solid gray;
+}
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+img{
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+
+figure{
+	width: 40%;
+	border: 5px double black;
+	height: auto;
+	padding: 0;
+}
+
+section{
+	height: 100vh;
+	border-bottom: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;	
+}
+
+li{
+	margin-left: 10px;
+}
+
+section article{
+	background-color:	hsla(0,0%,97%,0.7);
+	padding: 10px 15px;
+	border-radius: 10px;
+	max-width: 50%;
+}
+
+section:nth-child(1){
+	background: linear-gradient(to right, hsla(53,86%,49%,0.7), hsla(78,78%,69%,0.5), hsla(99,90%,64%,0.7)), url(../img/thinkingGirl.jpg) no-repeat;
+	background-size: cover;
+}
+
+section:nth-child(2){
+	background: linear-gradient(to right, hsla(0,65%,44%,0.5), hsla(59,80%,42%,0.5)), url(../img/head.jpg) no-repeat;
+	background-size: cover;
+}
+
+section:nth-child(3){
+	background: linear-gradient(to right, hsla(45,35%,19%,0.5), hsla(42,77%,77%,0.5)), url(../img/mind.jpg) no-repeat;
+	background-size: cover;
+}
+
+section:nth-child(4){
+	background: linear-gradient(to right, hsla(56,100%,50%,0.5), hsla(98,83%,55%,0.5)), url(../img/brain.jpg) no-repeat;
+	background-size: cover;
+}
+
+section:nth-child(5){
+	background: linear-gradient(to right, hsla(38,46%,55%,0.7), hsla(73,61%,69%,0.5), hsla(73,67%,45%,0.7)), url(../img/color.jpg) no-repeat;
+	background-size: cover;
+}
