@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+$color-red: #D80321;
+// $color-black: #1A1406;
+$color-black: #000;
+$color-orange: #F2930C;
+$color-gray: #cfcbdb;
+//$color-blue: #3D4273;
+$color-blue: #61679b;
+$color-yellow: rgb(216, 219, 24);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-family: 'Open Sans',arial,helvetica,sans-serif;
+    height: 3000px;
+
+    li{
+        list-style: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .container{
+        display: flex;
+        width: 80%;
+        margin: auto;
+    }
+
+    header{
+
+        margin: 0 0 auto 0;
+        padding: 0;
+        background-color: $color-black;
+        color: $color-gray;
+        border-bottom: 2px solid $color-gray;
+
+        .container{
+            justify-content: space-between;
+            flex-flow: row wrap;
+            align-items: stretch;
+            vertical-align: middle;
+        }
+        
+        div.logo{
+            z-index: 10;
+            font-size: 2.5em;
+            display: block;
+            text-align: center;
+
+            span{
+                color: $color-red;
+            }
+        }
+
+        .telephone{
+            z-index: 10;
+            color: $color-orange;
+            font-style: italic;
+            padding: 15px 0;
+        }
+
+        ul{ 
+            z-index: 10;
+            display: flex;
+            flex-direction: row;
+            flex-flow: row wrap;
+
+            a{  
+                display: block;
+                color: $color-gray;
+                padding: 15px 10px;
+                height: 100%;
+            }
+
+            a:hover{
+                background-color: $color-red;
+                color: white;
+            }
+        }
+
+        figure{
+            position: relative;
+
+            img{
+                width: 100%;
+            }
+
+            .info{
+                position: absolute;
+                top: 30%;
+                right: 50px;
+                background-color: rgba($color: $color-blue, $alpha: 0.5);
+                width: 35%;
+                color: white;
+                border-bottom: 5px solid $color-red;
+                padding: 20px;
+            }
+        }
+
+    .stick{
+            position: sticky; //not working
+            
+            .container{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-flow: row wrap;
+                align-items: stretch;
+                vertical-align: middle;
+            }
+
+            .selected{
+                background-color: $color-red;
+            }
+
+            a{
+                padding: 15px;
+                position: relative;
+            }
+
+            // .container>ul>li:last-child{
+            //     margin: 0 auto;
+            //     width: auto;
+            // }
+
+            form{
+                padding: 10px;
+
+                input[type=search]{
+                    border: 2px solid $color-black;
+                    border-radius: 4px;
+                    padding: 5px;
+                }
+
+                input[type=submit]{
+                    display: none;
+                    // position: relative;
+                    // right: 25px;
+                    // background-image: url("/img/icons8-поиск-16.png");
+                    // border-radius: 4px;
+                    // background-position: 0 0;
+                    // padding: 5px;
+                    // background-color: white;
+                    // border: none;
+                }
+            }
+
+            .tree-1, .tree-lv2{
+                display: none;
+            }
+
+            a:hover{
+                border-bottom: 5px solid $color-orange;
+                padding: 15px 15px 10px 15px;
+            }
+
+            .tree-open{
+                position: relative;
+            }
+
+            .tree-open:hover
+                .tree-1{
+                    width: 100%;
+                    background-color: $color-black;
+                    font-size: 0.75em;
+                    display: flex;
+                    z-index: 6;
+                    top: 52px;
+                    position: absolute;
+                    flex-direction: column;
+            }
+
+            .tree-1 li:hover .tree-lv2{
+                background-color: $color-black;
+                border-left: 1px solid $color-blue;
+                display: flex;
+                flex-direction: column;
+                top: 0;
+                height: 100%;
+                position: absolute;
+                left: 135px;
+            }
+        }
+    }
+
+    main{
+        background-color: $color-black;
+        color: $color-gray;
+
+        .container{
+            flex-flow: column;
+        }
+
+        h2{
+            margin: 20px 0;
+        }
+
+        .catalog{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+
+            figure{
+                margin: 10px 10px 0 0;
+                border: 1px solid $color-red;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 10px 20px white, 0 6px 6px white;
+                width: 250px;
+
+                a{
+                    color: $color-blue;
+                    display: block;
+                    width: 100%;
+                }
+
+                a img{
+                    margin: 0 auto;
+                }
+
+                h4{
+                    text-decoration: underline;
+                    margin-bottom: 5px;
+                }
+
+                li{
+                    margin-bottom: 10px;
+                }
+
+                figcaption ul a:hover:after{
+                    display: inline-block;
+                    position: absolute;
+                    content: " <";
+                    margin-left: 10px;
+                    font-weight: bold;
+                    color: $color-red;
+                }
+            }
+        }
+
+        .promo{
+            margin: 50px 0;
+            p{
+                padding: 10px;
+                border-left: 15px solid $color-red;
+                background-color: rgba($color: $color-blue, $alpha: 0.3);
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    footer{
+        border-top: 2px solid $color-gray;
+        background-color: $color-black;
+        color: $color-gray;
+        padding: 30px 0;
+
+        .container{
+            justify-content: space-between;
+            flex-flow: row wrap;
+        }
+
+        section{
+            p:first-child{
+                margin: 5px 0;
+                border-bottom: 2px groove $color-red;
+            }
+        }
+        .networks{
+            display: flex;
+            flex-direction: row;
+
+            a.icon{
+                display: block;
+                width: 48px;
+                height: 48px;
+                background: url(../img/spritesheet.png) no-repeat;
+                margin-right: 10px; 
+            }
+
+            a.facebook {
+                background-position: -179px -5px;
+            }
+
+            a.google {
+                background-position: -121px -5px;
+            }
+
+            a.rss {
+                background-position: -5px -5px;
+            }
+
+            a.twitter {
+                background-position: -63px -5px;
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 470px){
+    body header ul{
+        flex-direction: column;
+        width: 100%;
+        a{
+            width: 100%;
+            text-align: center;
+        }
+        body header .stick form{
+            width: 100%;
+            margin: 0 auto;
+            background-color: $color-gray;
+        }
+    }
+}
+
+@media only screen and (max-width: 700px){
+    form{
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    body div.container{
+        width: 90%;
+    }
+    body header figure .info{
+        width: 100%;
+        top: auto;
+        bottom: 0;
+        right: auto;
+        margin: 0;
+    }
+  }

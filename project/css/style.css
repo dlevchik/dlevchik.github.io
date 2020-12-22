@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: 'Open Sans',arial,helvetica,sans-serif;
+  height: 3000px; }
+  body li {
+    list-style: none; }
+  body a {
+    text-decoration: none; }
+  body .container {
+    display: flex;
+    width: 80%;
+    margin: auto; }
+  body header {
+    margin: 0 0 auto 0;
+    padding: 0;
+    background-color: #000;
+    color: #cfcbdb;
+    border-bottom: 2px solid #cfcbdb; }
+    body header .container {
+      justify-content: space-between;
+      flex-flow: row wrap;
+      align-items: stretch;
+      vertical-align: middle; }
+    body header div.logo {
+      z-index: 10;
+      font-size: 2.5em;
+      display: block;
+      text-align: center; }
+      body header div.logo span {
+        color: #D80321; }
+    body header .telephone {
+      z-index: 10;
+      color: #F2930C;
+      font-style: italic;
+      padding: 15px 0; }
+    body header ul {
+      z-index: 10;
+      display: flex;
+      flex-direction: row;
+      flex-flow: row wrap; }
+      body header ul a {
+        display: block;
+        color: #cfcbdb;
+        padding: 15px 10px;
+        height: 100%; }
+      body header ul a:hover {
+        background-color: #D80321;
+        color: white; }
+    body header figure {
+      position: relative; }
+      body header figure img {
+        width: 100%; }
+      body header figure .info {
+        position: absolute;
+        top: 30%;
+        right: 50px;
+        background-color: rgba(97, 103, 155, 0.5);
+        width: 35%;
+        color: white;
+        border-bottom: 5px solid #D80321;
+        padding: 20px; }
+    body header .stick {
+      position: sticky; }
+      body header .stick .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        align-items: stretch;
+        vertical-align: middle; }
+      body header .stick .selected {
+        background-color: #D80321; }
+      body header .stick a {
+        padding: 15px;
+        position: relative; }
+      body header .stick form {
+        padding: 10px; }
+        body header .stick form input[type=search] {
+          border: 2px solid #000;
+          border-radius: 4px;
+          padding: 5px; }
+        body header .stick form input[type=submit] {
+          display: none; }
+      body header .stick .tree-1, body header .stick .tree-lv2 {
+        display: none; }
+      body header .stick a:hover {
+        border-bottom: 5px solid #F2930C;
+        padding: 15px 15px 10px 15px; }
+      body header .stick .tree-open {
+        position: relative; }
+      body header .stick .tree-open:hover
+      .tree-1 {
+        width: 100%;
+        background-color: #000;
+        font-size: 0.75em;
+        display: flex;
+        z-index: 6;
+        top: 52px;
+        position: absolute;
+        flex-direction: column; }
+      body header .stick .tree-1 li:hover .tree-lv2 {
+        background-color: #000;
+        border-left: 1px solid #61679b;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        height: 100%;
+        position: absolute;
+        left: 135px; }
+  body main {
+    background-color: #000;
+    color: #cfcbdb; }
+    body main .container {
+      flex-flow: column; }
+    body main h2 {
+      margin: 20px 0; }
+    body main .catalog {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around; }
+      body main .catalog figure {
+        margin: 10px 10px 0 0;
+        border: 1px solid #D80321;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px white, 0 6px 6px white;
+        width: 250px; }
+        body main .catalog figure a {
+          color: #61679b;
+          display: block;
+          width: 100%; }
+        body main .catalog figure a img {
+          margin: 0 auto; }
+        body main .catalog figure h4 {
+          text-decoration: underline;
+          margin-bottom: 5px; }
+        body main .catalog figure li {
+          margin-bottom: 10px; }
+        body main .catalog figure figcaption ul a:hover:after {
+          display: inline-block;
+          position: absolute;
+          content: " <";
+          margin-left: 10px;
+          font-weight: bold;
+          color: #D80321; }
+    body main .promo {
+      margin: 50px 0; }
+      body main .promo p {
+        padding: 10px;
+        border-left: 15px solid #D80321;
+        background-color: rgba(97, 103, 155, 0.3);
+        margin-bottom: 20px; }
+  body footer {
+    border-top: 2px solid #cfcbdb;
+    background-color: #000;
+    color: #cfcbdb;
+    padding: 30px 0; }
+    body footer .container {
+      justify-content: space-between;
+      flex-flow: row wrap; }
+    body footer section p:first-child {
+      margin: 5px 0;
+      border-bottom: 2px groove #D80321; }
+    body footer .networks {
+      display: flex;
+      flex-direction: row; }
+      body footer .networks a.icon {
+        display: block;
+        width: 48px;
+        height: 48px;
+        background: url(../img/spritesheet.png) no-repeat;
+        margin-right: 10px; }
+      body footer .networks a.facebook {
+        background-position: -179px -5px; }
+      body footer .networks a.google {
+        background-position: -121px -5px; }
+      body footer .networks a.rss {
+        background-position: -5px -5px; }
+      body footer .networks a.twitter {
+        background-position: -63px -5px; }
+
+@media only screen and (max-width: 470px) {
+  body header ul {
+    flex-direction: column;
+    width: 100%; }
+    body header ul a {
+      width: 100%;
+      text-align: center; }
+    body header ul body header .stick form {
+      width: 100%;
+      margin: 0 auto;
+      background-color: #cfcbdb; } }
+@media only screen and (max-width: 700px) {
+  form {
+    margin: 0 auto; } }
+@media only screen and (max-width: 900px) {
+  body div.container {
+    width: 90%; }
+
+  body header figure .info {
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    right: auto;
+    margin: 0; } }
+
+/*# sourceMappingURL=style.css.map */
