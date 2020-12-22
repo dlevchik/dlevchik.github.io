@@ -215,7 +215,7 @@ body {
                 border: 1px solid $color-red;
                 padding: 10px;
                 border-radius: 5px;
-                box-shadow: 0 10px 20px white, 0 6px 6px white;
+                box-shadow: 0 10px 20px $color-red, 0 6px 6px $color-red;
                 width: 250px;
 
                 a{
@@ -321,6 +321,15 @@ body {
             margin: 0 auto;
             background-color: $color-gray;
         }
+    }
+
+    body header figure .info{
+        position: inherit;
+    }
+
+    body header .stick .tree-1 li:hover .tree-lv2{
+        border: 1px solid $color-orange;
+        left: 0;
     }
 }
 

@@ -131,7 +131,7 @@ body {
         border: 1px solid #D80321;
         padding: 10px;
         border-radius: 5px;
-        box-shadow: 0 10px 20px white, 0 6px 6px white;
+        box-shadow: 0 10px 20px #D80321, 0 6px 6px #D80321;
         width: 250px; }
         body main .catalog figure a {
           color: #61679b;
@@ -197,7 +197,14 @@ body {
     body header ul body header .stick form {
       width: 100%;
       margin: 0 auto;
-      background-color: #cfcbdb; } }
+      background-color: #cfcbdb; }
+
+  body header figure .info {
+    position: inherit; }
+
+  body header .stick .tree-1 li:hover .tree-lv2 {
+    border: 1px solid #F2930C;
+    left: 0; } }
 @media only screen and (max-width: 700px) {
   form {
     margin: 0 auto; } }

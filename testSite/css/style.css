@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 15px;
+  }
+
+  td,
+  th {
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
+  }
+
+  th {
+    font-weight: bold;
+    background-color: #E6E6E6;
+  }
