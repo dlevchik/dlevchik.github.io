@@ -1,6 +1,38 @@
 body{
     display: flex;
     flex-flow: row wrap;
+    padding: 0;
+}
+
+.notification{
+  position: absolute;
+  display: block;
+  margin: 0;
+  background-color: rgba(238, 227, 227, 0.7);
+  color: red;
+  border: 2px solid firebrick;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.notification .close{
+  position: absolute;
+  font-family: monospace;
+  color: black;
+  top: -10px;
+  right: -10px;
+  display: block;
+}
+
+.notification:hover{
+  border-color: tomato;
+}
+
+.welcome{
+  background-color: gray;
 }
 
 table {

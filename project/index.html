@@ -7,15 +7,26 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div id="loadingScreen"><span>loading...</span></div>
+    <div class="loginform" id="loginform">
+        <form action="">
+            <button id="close">Close</button>
+            <label for="fname">Login:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <label for="lname">Password:</label><br>
+            <input type="text" id="lname" name="lname">
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </div>
     <header>
         <div class="container">
             <div class="logo">AUTO<span>SHOP</span></div>
             <div class="telephone"><img src="img/icons8-телефон-16.png"> 8-800-555-35-35|380-91-481-9810</div>
             <ul>
-                <li><a href="#">О нас</a></li>  
+                <li><a href="#gmap_canvas">О нас</a></li>  
                 <li><a href="#">Доставка и оплата</a></li>
                 <li><a href="#">Корзина</a></li> 
-                <li><a href="#">Вход для клиентов</a></li>
+                <li><button id="login">Вход для клиентов</button></li>
             </ul>
         </div>
         <figure>
@@ -376,6 +387,14 @@
                 </div>
             </section>
 
+            <section class="map">
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=%D0%A0%D1%96%D0%B2%D0%BD%D0%B5%D0%BD%D1%81%D1%8C%D0%BA%D0%B0,%20%D0%B1%D1%83%D0%B4.%20120%20%D0%B0,%20%D0%A1%D1%82%D1%80%D1%83%D0%BC%D1%96%D0%B2%D0%BA%D0%B0&t=k&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    </div>
+                </div>
+            </section>
+
             <section class="promo">
                 <h2>Интернет магазин автозапчастей – это удобно</h2>
                 <p>Для того, чтобы вы могли купить автозапчасти в интернет магазине в Киеве со всеми удобствами, мы создали простой и понятный каталог. Все детали разобраны по типам систем, в которых они используются. Если вы правильно указали марку и модель авто, а также систему, то на вашем дисплее откроется страница запчасти с ее фото и техническим описанием. Рядом с изображением будет указана стоимость, что позволит вам оперативно принять решение о покупке.
@@ -409,5 +428,7 @@
             </section>
         </div>
     </footer>
+    <div id="scrollUp"> <</div>
+    <script src="script.js"></script>
 </body>
 </html>
