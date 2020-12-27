@@ -20,14 +20,16 @@ let turbine;
 
 document.addEventListener("contextmenu", (event) =>{
     event.preventDefault();
+    if(event.target == turbine)return;
+    if(turbine) turbine.remove();
 
     turbine = document.createElement("img");
     turbine.setAttribute("src", "https://thumbs.gfycat.com/PlainSoreEagle-small.gif");
     document.body.append(turbine);
 
-    turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray;`;
+    turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray; height: 100px;`;
 });
 
 document.addEventListener("click", (event) =>{
-    if(event.target != turbine){turbine.remove();}
+    if(turbine && event.target != turbine)turbine.remove();
 });
