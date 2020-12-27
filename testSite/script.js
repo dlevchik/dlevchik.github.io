@@ -14,3 +14,20 @@ for (let i = 0; i < table.rows.length-1; i++)
             }  
         }
     }
+
+
+let turbine;
+
+document.addEventListener("contextmenu", (event) =>{
+    event.preventDefault();
+
+    turbine = document.createElement("img");
+    turbine.setAttribute("src", "https://thumbs.gfycat.com/PlainSoreEagle-small.gif");
+    document.body.append(turbine);
+
+    turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray;`;
+});
+
+document.addEventListener("click", (event) =>{
+    if(event.target != turbine){turbine.remove();}
+});
