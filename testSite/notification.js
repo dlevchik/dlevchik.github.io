@@ -29,14 +29,14 @@ function showNotification({className, html = "Attention!", showtime, style = "",
 
 
 
-showNotification({
-    html: "Hello!", 
-    className: "welcome", 
-    style: "top: 30px; right: 30px;",
-    showtime: 3000,
-    onclk: function() {
-        this.textContent = "fuck";
-    },
-  });
+// showNotification({
+//     html: "Hello!", 
+//     className: "welcome", 
+//     style: "top: 30px; right: 30px;",
+//     showtime: 3000,
+//     onclk: function() {
+//         this.textContent = "fuck";
+//     },
+//   });
 
 //showNotification({});

@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="slider">
+    <div class="thumb"></div>
+  </div>
+  <br>
     <div id="test">
         <table id="table">
             <tr>
@@ -31,6 +35,20 @@
             </tr>
           </table>
     </div>
+
+    <br>
+    <div class="slider" data-value="40">
+      <div class="thumb"></div>
+    </div>
+
+    <button onclick='showNotification({html: "Hello!", className: "welcome", style: "top: 30px; right: 30px;", showtime: 3000, onclk: function() { this.textContent = "fuck";}, });'>
+      show notification
+    </button>
+
     <script src="script.js"></script>
+    <script src="slider.js"></script>
+    <script src="calendar.js"></script>
+    <script src="clock.js"></script>
+    <script src="notification.js"></script>
 </body>
 </html>

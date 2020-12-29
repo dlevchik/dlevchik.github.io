@@ -4,16 +4,16 @@ let close = document.getElementById("close");
 let scrollUp = document.getElementById("scrollUp");
 let loadingScreen = document.getElementById("loadingScreen");
 
-form.hidden = true;
+form.style.display = "none";
 scrollUp.style.display = "none";
 //scrollUp.hidden = true; //not working
 
 button.onclick = function() {
-    form.hidden = false;
-  };
+  form.style.display = "flex";
+};
 
 close.onclick = function(){
-    form.hidden = true;
+  form.style.display = "none";
 }
 
 scrollUp.onclick = function(){
@@ -33,4 +33,8 @@ window.onscroll = function(){
 document.addEventListener("DOMContentLoaded", function() {
     loadingScreen.remove();
     document.body.style.overflow = "inherit";
+});
+
+form.addEventListener("click", (event) => {
+  if(event.target.classList.contains("loginform")) form.style.display = "none";
 });

@@ -1,4 +1,4 @@
-let test = document.getElementById("test");
+let clockContainer = document.getElementById("clockContainer") || document.body;
 
 let clock = document.createElement("p");
 let hours = document.createElement("span");

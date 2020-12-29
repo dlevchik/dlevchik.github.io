@@ -1,6 +1,6 @@
 body{
-    display: flex;
-    flex-flow: row wrap;
+    /* display: flex;
+    flex-flow: row wrap; */
     padding: 0;
 }
 
@@ -50,4 +50,25 @@ table {
   th {
     font-weight: bold;
     background-color: #E6E6E6;
+  }
+
+  .slider {
+    border-radius: 5px;
+    background: #E0E0E0;
+    background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+    width: 310px;
+    height: 15px;
+    position: relative;
+    margin: 5px;
+  }
+  
+  .thumb {
+    width: 10px;
+    height: 25px;
+    border-radius: 3px;
+    position: absolute;
+    left: 10px;
+    top: -5px;
+    background: blue;
+    cursor: pointer;
   }

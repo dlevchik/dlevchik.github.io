@@ -47,7 +47,10 @@ function createCalendar(elem, year, month) {
     return table;
   }
 
-  for(let i = 1; i < 13; i++){
-      createCalendar(document.body, 2020, i).insertAdjacentHTML('afterbegin', `${i}`);;
-  }
+  let datenow = new Date();
+  createCalendar(document.body, datenow.getFullYear(), datenow.getMonth());
+
+//   for(let i = 1; i < 13; i++){
+//       createCalendar(document.body, 2020, i).insertAdjacentHTML('afterbegin', `${i}`);;
+//   }
   //let div = document.createElement("div"); document.body.append(div); createCalendar(div, 2020, 11);
