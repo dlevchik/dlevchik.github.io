@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <section>
   <div class="slider">
     <div class="thumb"></div>
   </div>
-  <br>
+</section>
+<section>
     <div id="test">
         <table id="table">
             <tr>
@@ -35,15 +37,41 @@
             </tr>
           </table>
     </div>
+  </section>
 
-    <br>
+    <section>
     <div class="slider" data-value="40">
       <div class="thumb"></div>
-    </div>
+    </section>
 
-    <button onclick='showNotification({html: "Hello!", className: "welcome", style: "top: 30px; right: 30px;", showtime: 3000, onclk: function() { this.textContent = "fuck";}, });'>
-      show notification
-    </button>
+    <section>
+      <button onclick='showNotification({html: "Hello!", className: "welcome", style: "top: 30px; right: 30px;", showtime: 3000, onclk: function() { this.textContent = "fuck";}, });'>
+        show notification
+      </button>
+    </section>
+    
+    <section>
+    <p>github user:</p>
+    <input type="text" id="git" value="dlevchik"> <div id="gitResult"></div>
+    </section>
+
+    <section>
+    <img src="" alt="random cat" width="400" height="400" id="randomCat">
+    <button onclick="getRandomCat()">random cat</button> не работает по причине Cross-Origin Read Blocking (CORB) blocked cross-origin response 
+    </section>
+
+    <section>
+    форма для общения с telegram @dlevchik через ТГ бота
+    <div class="telegram">
+      <p class="TGheader"><img src="img/photo2060514404707968987.jpg" alt="">полтора пельменя </p>
+      <!-- <span>@dlevchik</span> -->
+      <div id="TGresults"></div>
+      <form action="" id="telegram">
+        <textarea name="message" placeholder="Write a message..."></textarea> <button type="submit">Sent</button>
+      </form>
+    </div>
+    </div>
+    </section>
 
     <script src="script.js"></script>
     <script src="slider.js"></script>

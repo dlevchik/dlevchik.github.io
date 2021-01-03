@@ -48,7 +48,7 @@ function createCalendar(elem, year, month) {
   }
 
   let datenow = new Date();
-  createCalendar(document.body, datenow.getFullYear(), datenow.getMonth());
+  createCalendar(document.body, datenow.getFullYear(), datenow.getMonth() + 1);
 
 //   for(let i = 1; i < 13; i++){
 //       createCalendar(document.body, 2020, i).insertAdjacentHTML('afterbegin', `${i}`);;

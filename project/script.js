@@ -30,7 +30,7 @@ window.onscroll = function(){
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("load", function() {
     loadingScreen.remove();
     document.body.style.overflow = "inherit";
 });
