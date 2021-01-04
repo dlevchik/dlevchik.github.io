@@ -10,13 +10,14 @@ for (let i = 0; i < table.rows.length-1; i++)
                 table.rows[i].cells[0].innerHTML = table.rows[j].cells[0].innerHTML;
                 table.rows[j].cells[0].innerHTML = temporary;
                 
-                console.log(`${table.rows[i].cells[0].textContent} <=> ${table.rows[j].cells[0].textContent}`);
+                //console.log(`${table.rows[i].cells[0].textContent} <=> ${table.rows[j].cells[0].textContent}`);
             }  
         }
     }
 
 
 let turbine;
+const turbineSound = new Audio("09038.mp3");
 
 document.addEventListener("contextmenu", (event) =>{
     event.preventDefault();
@@ -26,6 +27,8 @@ document.addEventListener("contextmenu", (event) =>{
     turbine = document.createElement("img");
     turbine.setAttribute("src", "https://thumbs.gfycat.com/PlainSoreEagle-small.gif");
     document.body.append(turbine);
+
+    turbineSound.play(); //Please don't ask
 
     turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray; height: 100px;`;
 });
@@ -74,10 +77,19 @@ const botUrl = new URL("https://api.telegram.org/bot841759352:AAExQlOJDQH9pvvdA9
 const botMessageUrl = new URL(botUrl + "sendMessage");
 const TGresults = document.getElementById("TGresults");
 const updateUrl = new URL(botUrl + "getUpdates");
+const messageSound = new Audio("what-302.mp3");
+let temporaryMessage = document.querySelector(".temporaryMessage");
 botMessageUrl.searchParams.set("chat_id", "479750895");
+
+telegram.message.value = localStorage.getItem("messageValue");
+
+telegram.message.addEventListener("input", () => {
+    localStorage.setItem("messageValue", telegram.message.value);
+});
 
 telegram.addEventListener("submit", (event) => {
     event.preventDefault();
+    if(!telegram.message.value){telegram.message.value = ""; return;} //TODO: add REGEX
     botMessageUrl.searchParams.set("text", telegram.message.value);
 
     fetch(botMessageUrl)
@@ -85,6 +97,8 @@ telegram.addEventListener("submit", (event) => {
             console.log(response);
             sentMessage(response, telegram.message.value);
             telegram.message.value = "";
+            localStorage.setItem("messageValue", "");
+            
             return response;
         })
         .catch(error => console.error(error));
@@ -95,9 +109,13 @@ function sentMessage(response, message) {
     p.classList.add("sent");
 
     if(response.ok == true){
-        p.innerHTML = message;
+        p.textContent = message;
     } else{
-        p.innerHTML = response.statusText;
+        p.textContent = response.statusText;
+    }
+
+    if(temporaryMessage){
+        temporaryMessage.remove();
     }
 
     TGresults.append(p);
@@ -108,36 +126,48 @@ function receiveMessage(message) {
 
     if(message.ok == true){
         message.result.forEach(element => {
+            let messageDate = new Date(element.message.date * 1000);
+            console.log(messageDate.getHours() + ":" + messageDate.getMinutes());
+            
             let p = document.createElement("p");
             p.classList.add("receive");
-            p.innerHTML = element.message.text;
+            p.textContent = element.message.text;
+
+            messageSound.play();
+
+            if(temporaryMessage){
+                temporaryMessage.remove();
+            }
 
             TGresults.append(p);
             TGresults.scrollTop = TGresults.scrollHeight;
         });
     } else{
-        console.log("shit");
+        console.error(message.statusText);
     }
 }
 
-//result.result[result.result.length - 1].update_id
-
 listenBot();
+let fetchInProgress = false;
 function listenBot() {
     setInterval(()=>{
-      fetch(updateUrl)
-        .then(response => response.json())
-        .then(result => {
-            if(result.result.length >= 1){
-                //console.log(result);
-            }
-            try {
-                updateUrl.searchParams.set("offset", result.result[result.result.length - 1].update_id + 1);
-            } catch(err) {
-                if(err.name != "TypeError") console.error(err);
-            }
-            receiveMessage(result);
-        })
-        .catch(error => console.error(error));
+        if(fetchInProgress == false){
+            fetchInProgress = true;
+            fetch(updateUrl)
+                .then(response => response.json())
+                .then(result => {
+                    if(result.result.length >= 1){
+                        //console.log(result);
+                    }
+                    try {
+                        updateUrl.searchParams.set("offset", result.result[result.result.length - 1].update_id + 1);
+                    } catch(err) {
+                        if(err.name != "TypeError") console.error(err);
+                    }
+                    receiveMessage(result);
+                    fetchInProgress = false;
+                })
+                .catch(error => {console.error(error); fetchInProgress = false;});
+        }
     }, 3000);
 }

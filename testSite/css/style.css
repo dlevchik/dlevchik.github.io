@@ -34,10 +34,22 @@ section{
   font-weight: lighter;
 }
 
-.telegram p.TGheader span{
-  /* display: block; */
+.telegram .TGheader div{
+  display: inline-block;
+  width: 100px;
+}
+
+.telegram .TGheader span{
+  display: block;
   color: gray;
   font-size: 0.5em;
+}
+
+.telegram .temporaryMessage{
+  align-self: center;
+  justify-self: center;
+  margin-top: 180px;
+  color: gray;
 }
 
 .telegram .sent, 
