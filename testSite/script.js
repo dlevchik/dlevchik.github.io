@@ -75,11 +75,32 @@ function getRandomCat() {
 const telegram = document.getElementById("telegram");
 const botUrl = new URL("https://api.telegram.org/bot841759352:AAExQlOJDQH9pvvdA9V7mEbWb_6JtFL2FM4/");
 const botMessageUrl = new URL(botUrl + "sendMessage");
+botMessageUrl.searchParams.set("chat_id", "479750895");
 const TGresults = document.getElementById("TGresults");
 const updateUrl = new URL(botUrl + "getUpdates");
 const messageSound = new Audio("what-302.mp3");
-let temporaryMessage = document.querySelector(".temporaryMessage");
-botMessageUrl.searchParams.set("chat_id", "479750895");
+const temporaryMessage = document.querySelector(".temporaryMessage");
+let firstSessionMessage = false;
+
+let messageArray = JSON.parse(localStorage.getItem("messageArray"));
+if (!messageArray){
+    localStorage.setItem("messageArray", JSON.stringify([]));
+    messageArray = JSON.parse(localStorage.getItem("messageArray"));
+}
+
+//(messageArray.length - 10) ||
+for (let i = 0; i < messageArray.length; i++) {
+    if(!messageArray[i]) {break;}
+    let messageArrayElem = JSON.parse(messageArray[i]);
+    
+    if(Array.isArray(messageArrayElem.result)){
+        receiveMessage(messageArrayElem);
+    } else{
+        sentMessage(messageArrayElem.response, messageArrayElem.message);
+    }
+}
+
+firstSessionMessage = true;
 
 telegram.message.value = localStorage.getItem("messageValue");
 
@@ -89,12 +110,14 @@ telegram.message.addEventListener("input", () => {
 
 telegram.addEventListener("submit", (event) => {
     event.preventDefault();
-    if(!telegram.message.value){telegram.message.value = ""; return;} //TODO: add REGEX
+    if(!telegram.message.value){
+        telegram.message.value = "";
+        return;
+    }
     botMessageUrl.searchParams.set("text", telegram.message.value);
 
     fetch(botMessageUrl)
         .then(response => {
-            console.log(response);
             sentMessage(response, telegram.message.value);
             telegram.message.value = "";
             localStorage.setItem("messageValue", "");
@@ -108,8 +131,19 @@ function sentMessage(response, message) {
     let p = document.createElement("p");
     p.classList.add("sent");
 
+    if(firstSessionMessage && messageArray.length != 0){
+        TGresults.append(document.createElement("hr"));
+        firstSessionMessage = false;
+    }
+
     if(response.ok == true){
         p.textContent = message;
+        
+        if(response.type){
+            messageArray.push(JSON.stringify({response: {ok: response.ok, status: response.status, statusText: response.statusText}, message: message, date: Date.now()}));
+        }
+
+        localStorage.setItem("messageArray", JSON.stringify(messageArray));
     } else{
         p.textContent = response.statusText;
     }
@@ -125,15 +159,30 @@ function sentMessage(response, message) {
 function receiveMessage(message) {
 
     if(message.ok == true){
-        message.result.forEach(element => {
+
+        message.result.forEach((element, index) => {
             let messageDate = new Date(element.message.date * 1000);
-            console.log(messageDate.getHours() + ":" + messageDate.getMinutes());
+            // console.log(messageDate.getHours() + ":" + messageDate.getMinutes());
             
             let p = document.createElement("p");
             p.classList.add("receive");
             p.textContent = element.message.text;
 
-            messageSound.play();
+            if(firstSessionMessage && messageArray.length != 0){
+                TGresults.append(document.createElement("hr"));
+                firstSessionMessage = false;
+            }
+
+            if(message.played == undefined){
+                if(index == 0){
+                    messageArray.push(JSON.stringify({ok: message.ok, result: message.result, played: true}));
+                    localStorage.setItem("messageArray", JSON.stringify(messageArray));
+                }
+                
+                messageSound.play().catch(error => {if(error.name != "NotAllowedError"){
+                    console.error(error);
+                }});
+            }
 
             if(temporaryMessage){
                 temporaryMessage.remove();
@@ -156,15 +205,13 @@ function listenBot() {
             fetch(updateUrl)
                 .then(response => response.json())
                 .then(result => {
-                    if(result.result.length >= 1){
-                        //console.log(result);
-                    }
                     try {
                         updateUrl.searchParams.set("offset", result.result[result.result.length - 1].update_id + 1);
                     } catch(err) {
                         if(err.name != "TypeError") console.error(err);
                     }
                     receiveMessage(result);
+
                     fetchInProgress = false;
                 })
                 .catch(error => {console.error(error); fetchInProgress = false;});

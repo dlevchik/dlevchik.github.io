@@ -52,6 +52,17 @@ section{
   color: gray;
 }
 
+.telegram hr{
+  width: 95%;
+  border: 1px solid #313c49;
+  height: 1px;
+}
+
+.telegram hr::after{
+  content: "new messages";
+  display: block;
+}
+
 .telegram .sent, 
 .telegram .receive{
   display: inline-block;
