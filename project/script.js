@@ -30,10 +30,10 @@ window.onscroll = function(){
   }
 }
 
-document.addEventListener("load", function() {
+//document.addEventListener("load", function() {
     loadingScreen.remove();
     document.body.style.overflow = "inherit";
-});
+// });
 
 form.addEventListener("click", (event) => {
   if(event.target.classList.contains("loginform")) form.style.display = "none";
