@@ -16,33 +16,38 @@ section{
   margin-top: 15px;
 }
 
-.telegram img{
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
-}
-
-.telegram p.TGheader{
-  background-color: #313c49;
-  border-bottom: 1px solid black;
+.telegram .TGheader{
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid black;
+  background-color: #313c49;
   padding: 10px;
-  margin: 0;
-  font-size: 1.5em;
-  font-weight: lighter;
 }
 
-.telegram .TGheader div{
-  display: inline-block;
-  width: 100px;
+.telegram .TGheader .textContainer{
+  margin: 0;
+  padding: 0;
+  margin-left: 15px;
+}
+
+.telegram .TGheader span, 
+.telegram .TGheader strong{
+  display: block;
+  margin: 0;
+}
+
+.telegram .TGheader strong{
+  font-size: 1.3rem;
 }
 
 .telegram .TGheader span{
-  display: block;
   color: gray;
-  font-size: 0.5em;
+}
+
+.telegram .TGheader img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .telegram .temporaryMessage{
@@ -58,28 +63,92 @@ section{
   height: 1px;
 }
 
-.telegram hr::after{
-  content: "new messages";
-  display: block;
-}
-
 .telegram .sent, 
 .telegram .receive{
   display: inline-block;
   padding: 10px 15px;
   border-radius: 10px;
-  max-width: 30%;
-  margin: 5px 0;
+  max-width: 40%;
+  white-space: pre-line;
+  word-wrap: break-word;
+  margin: 10px 0;
+  position: relative;
 }
+
 .telegram .sent{
   background-color: #3983c3;
   align-self: flex-end;
+  margin-right: 10px;
 }
 
 .telegram .receive{
   background-color: #313c49;
   align-self: flex-start;
   margin-left: 10px;
+}
+
+.telegram time{
+  position: absolute;
+  bottom: -16px;
+  color: gray;
+}
+
+.telegram .sent time{
+  right: 0;
+}
+
+.telegram .receive time{
+  left: 0;
+}
+
+.telegram .sound {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	margin: 10px 0 0 20px;
+}
+.telegram .sound + label {
+	position: relative;
+	padding: 0 0 0 0;
+  cursor: pointer;
+  margin: 15px 15px;
+}
+.telegram .sound + label:before {
+	content: '';
+	position: absolute;
+	top: -4px;
+	left: 0;
+	width: 50px;
+	height: 26px;
+	border-radius: 13px;
+	background: #1f2936;
+	box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+	transition: .2s;
+}
+.telegram .sound + label:after {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: 2px;
+	width: 22px;
+	height: 22px;
+	border-radius: 10px;
+	background: #FFF;
+  background-image: url(https://img.icons8.com/material/24/000000/no-audio--v2.png);
+  background-size: 90% 90%;
+  background-repeat: no-repeat;
+  background-position: 2px 1px;
+	box-shadow: 0 2px 5px rgba(0,0,0,.3);
+	transition: .2s;
+}
+.telegram .sound:checked + label:before {
+	background: #3983c3;
+}
+.telegram .sound:checked + label:after {
+	left: 26px;
+}
+.telegram .sound:focus + label:before {
+	box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
 }
 
 .telegram #TGresults{
@@ -135,6 +204,14 @@ section{
 .telegram textarea:focus{
   outline: none;
   border: none;
+}
+
+.telegram input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 #gitResult{

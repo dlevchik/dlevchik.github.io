@@ -17,7 +17,6 @@ for (let i = 0; i < table.rows.length-1; i++)
 
 
 let turbine;
-const turbineSound = new Audio("09038.mp3");
 
 document.addEventListener("contextmenu", (event) =>{
     event.preventDefault();
@@ -28,6 +27,7 @@ document.addEventListener("contextmenu", (event) =>{
     turbine.setAttribute("src", "https://thumbs.gfycat.com/PlainSoreEagle-small.gif");
     document.body.append(turbine);
 
+    let turbineSound = new Audio("09038.mp3");
     turbineSound.play(); //Please don't ask
 
     turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray; height: 100px;`;
@@ -80,13 +80,24 @@ const TGresults = document.getElementById("TGresults");
 const updateUrl = new URL(botUrl + "getUpdates");
 const messageSound = new Audio("what-302.mp3");
 const temporaryMessage = document.querySelector(".temporaryMessage");
+const telegramCheckbox = document.getElementById("sound");
 let firstSessionMessage = false;
+let pressed = new Set();
 
 let messageArray = JSON.parse(localStorage.getItem("messageArray"));
 if (!messageArray){
     localStorage.setItem("messageArray", JSON.stringify([]));
     messageArray = JSON.parse(localStorage.getItem("messageArray"));
 }
+
+if(!localStorage.getItem("checkbox")){
+    localStorage.setItem("checkbox", true);
+}
+telegramCheckbox.checked = JSON.parse(localStorage.getItem("checkbox"));
+
+telegramCheckbox.addEventListener("click", () => {
+    localStorage.setItem("checkbox", telegramCheckbox.checked);
+});
 
 //(messageArray.length - 10) ||
 for (let i = 0; i < messageArray.length; i++) {
@@ -96,7 +107,7 @@ for (let i = 0; i < messageArray.length; i++) {
     if(Array.isArray(messageArrayElem.result)){
         receiveMessage(messageArrayElem);
     } else{
-        sentMessage(messageArrayElem.response, messageArrayElem.message);
+        sentMessage(messageArrayElem.response, messageArrayElem.message, messageArrayElem.date);
     }
 }
 
@@ -105,7 +116,7 @@ firstSessionMessage = true;
 telegram.message.value = localStorage.getItem("messageValue");
 
 telegram.message.addEventListener("input", () => {
-    localStorage.setItem("messageValue", telegram.message.value);
+    localStorage.setItem("messageValue", telegram.message.value); 
 });
 
 telegram.addEventListener("submit", (event) => {
@@ -118,7 +129,7 @@ telegram.addEventListener("submit", (event) => {
 
     fetch(botMessageUrl)
         .then(response => {
-            sentMessage(response, telegram.message.value);
+            sentMessage(response, telegram.message.value, Date.now());
             telegram.message.value = "";
             localStorage.setItem("messageValue", "");
             
@@ -127,7 +138,22 @@ telegram.addEventListener("submit", (event) => {
         .catch(error => console.error(error));
 });
 
-function sentMessage(response, message) {
+telegram.message.addEventListener("keydown", (event) =>{
+    pressed.add(event.code);
+
+    if((pressed.has("ShiftLeft") || pressed.has("ShiftRight")) && pressed.has("Enter")){
+        event.preventDefault();
+        telegram.message.value += "\n";
+    } else if(!(pressed.has("ShiftLeft") || pressed.has("ShiftRight")) && pressed.has("Enter")){
+        telegram.button.click();
+    }
+
+    telegram.message.addEventListener("keyup", (event) => {
+        pressed.delete(event.code);
+      });
+});
+
+function sentMessage(response, message, date) {
     let p = document.createElement("p");
     p.classList.add("sent");
 
@@ -138,9 +164,16 @@ function sentMessage(response, message) {
 
     if(response.ok == true){
         p.textContent = message;
-        
+
+        let messageDate = new Date(date);
+        let messageHours = messageDate.getHours() <= 9 ? "0" + messageDate.getHours() : messageDate.getHours();
+        let messageMins = messageDate.getMinutes() <= 9 ? "0" + messageDate.getMinutes() : messageDate.getMinutes();
+        let messageSeconds = messageDate.getSeconds() <= 9 ? "0" + messageDate.getSeconds() : messageDate.getSeconds();
+
+        p.insertAdjacentHTML("beforeend", `<time>${messageHours}:${messageMins}:${messageSeconds}</time>`);
+
         if(response.type){
-            messageArray.push(JSON.stringify({response: {ok: response.ok, status: response.status, statusText: response.statusText}, message: message, date: Date.now()}));
+            messageArray.push(JSON.stringify({response: {ok: response.ok, status: response.status, statusText: response.statusText}, message: message, date: date}));
         }
 
         localStorage.setItem("messageArray", JSON.stringify(messageArray));
@@ -161,9 +194,6 @@ function receiveMessage(message) {
     if(message.ok == true){
 
         message.result.forEach((element, index) => {
-            let messageDate = new Date(element.message.date * 1000);
-            // console.log(messageDate.getHours() + ":" + messageDate.getMinutes());
-            
             let p = document.createElement("p");
             p.classList.add("receive");
             p.textContent = element.message.text;
@@ -179,14 +209,23 @@ function receiveMessage(message) {
                     localStorage.setItem("messageArray", JSON.stringify(messageArray));
                 }
                 
-                messageSound.play().catch(error => {if(error.name != "NotAllowedError"){
-                    console.error(error);
-                }});
+                if(JSON.parse(localStorage.getItem("checkbox"))){
+                    messageSound.play().catch(error => {if(error.name != "NotAllowedError"){
+                        console.error(error);
+                    }});
+                }
             }
 
             if(temporaryMessage){
                 temporaryMessage.remove();
             }
+
+            let messageDate = new Date(element.message.date * 1000);
+            let messageHours = messageDate.getHours() <= 9 ? "0" + messageDate.getHours() : messageDate.getHours();
+            let messageMins = messageDate.getMinutes() <= 9 ? "0" + messageDate.getMinutes() : messageDate.getMinutes();
+            let messageSeconds = messageDate.getSeconds() <= 9 ? "0" + messageDate.getSeconds() : messageDate.getSeconds();
+
+            p.insertAdjacentHTML("beforeend", `<time>${messageHours}:${messageMins}:${messageSeconds}</time>`);
 
             TGresults.append(p);
             TGresults.scrollTop = TGresults.scrollHeight;
