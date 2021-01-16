@@ -198,18 +198,18 @@ function updateHistory(town){
         bigScreenHistory.innerHTML = "";
 
         historyArray.forEach(town => {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${town}&lang=ru&appid=d68a6e989f6d79ca60506d231c444f00`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${town}&lang=ru&appid=d68a6e989f6d79ca60506d231c444f00`)
             .then(response => response.json())
             .then(result => {
                 headerHistory.insertAdjacentHTML('beforeend', `<a href="#weather" class="searchResultItem">
                     <span class="town">${town}</span>
-                    <img src="http://openweathermap.org/img/wn/${result.weather[0].icon}.png" alt="${result.weather[0].main}">
+                    <img src="https://openweathermap.org/img/wn/${result.weather[0].icon}.png" alt="${result.weather[0].main}">
                     <span class="temperature">${round(result.main.temp) + metric}</span>
                     </a>`);
                 
                 bigScreenHistory.insertAdjacentHTML('beforeend', `<a href="#weather" class="searchResultItem">
                     <span class="town">${town}</span>
-                    <img src="http://openweathermap.org/img/wn/${result.weather[0].icon}.png" alt="${result.weather[0].main}">
+                    <img src="https://openweathermap.org/img/wn/${result.weather[0].icon}.png" alt="${result.weather[0].main}">
                     <span class="temperature">${round(result.main.temp) + metric}</span>
                     </a>`);
             })
