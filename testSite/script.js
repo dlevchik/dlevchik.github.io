@@ -67,10 +67,15 @@ git.addEventListener("input", updateGithub);
 function getRandomCat() {
     let img = document.getElementById("randomCat");
 
-    fetch("https://api.thecatapi.com/v1/images/search")
-    .then(response => img.setAttribute("src", response.url))
+    fetch("https://api.thecatapi.com/v1/images/search", {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        }
+      })
+    .then(response => response.json())
+    .then(result => img.setAttribute("src", result[0].url))
     .catch(error => console.error(error));
-}
+}//img.setAttribute("src", response[0].url)
 
 const telegram = document.getElementById("telegram");
 const botUrl = new URL("https://api.telegram.org/bot841759352:AAExQlOJDQH9pvvdA9V7mEbWb_6JtFL2FM4/");

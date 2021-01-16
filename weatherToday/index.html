@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Levchik Dmytro">
+    <meta name="description" content="Используя глобальные зарубежные базы данных мы помогаем вам узнать точную как никогда погоду а также статистику Covid-19 у вас в регионе">
+    <meta name="keywords" content="погода коронавирус прогноз Covid-19">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:description" content="Используя глобальные зарубежные базы данных мы помогаем вам узнать точную как никогда погоду а также статистику Covid-19 у вас в регионе">
+    <meta property="og:title" content="Weather Today | Прогноз погоды и информация по коронавирусу!">
+    <title>Weather Today | Прогноз погоды и информация по коронавирусу!</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133421601-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133421601-1');
+    </script>
+    <script data-ad-client="ca-pub-2154042850382866" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><img src="img/logo.png" alt="logo"> <h1>Weather<span>Today</span></h1></div>
+            <nav>
+                <ul>
+                    <li><a href="#map">Радар и Карты</a></li>
+                    <li><a href="#coronavirus"><span>!</span>Covid-19<span>!</span></a></li>
+                    <li><a href="#weather">Прогноз</a></li>
+                </ul>
+            </nav>
+            <form class="search">
+                <div class="container">
+                    <input type="search" placeholder="Поиск по месторасположению, индексу..."> 
+                    <input type="submit" value="" hidden>
+                </div>
+            </form>
+            <button class="menu"> </button>
+        </div>
+        <div class="searchResults hidden">
+            <div class="container">
+                <div>
+                    <div class="resultsContainer">
+                        <button class="geolocation">Использовать моё месторасположение</button>
+                        <div class="results">
+                        </div>
+                        <a href="#map" class="geolocation">Перейти к месторасположению на карте</a>
+                    </div>
+                </div>
+                <div class="history">
+                    <h2>Недавние месторасположения</h2>
+                    <div class="historyResults">
+                        <span>Здесь пока ничего нет...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bigScreen">
+        <div class="container">
+            <!-- <p class="info">
+                We provide weather. Today.
+            </p> -->
+            <form class="search">
+                <img src="img/search.png"><input type="search" placeholder="Поиск по месторасположению, индексу..." tabindex="1">
+                <input type="submit" value="" hidden>
+                <ul class="resultsContainer hidden">
+                    <li class="geolocation"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marked-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z" class=""></path></svg><a class="button">Использовать моё месторасположение</a></li>
+                    <div class="results">
+                        
+                    </div>
+                </ul>
+            </form>
+            <div class="history">
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="weather" id="weather">
+        <div class="container">
+
+            <div class="current">
+                <div class="row">
+                    <h2>Сегодня</h2>
+                    <img src="http://openweathermap.org/img/wn/10d@4x.png" alt="loading...">
+                    <div class="info">
+                        <span class="town">loading...</span>
+                        <span class="description">loading...</span>
+                        <span class="temperature">...℃</span>
+                        <p>Ощущается как: <span class="feels">...℃</span></p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <p>Самая высокая:<span class="highest">...℃</span>;</p>
+                    <p>Самая низкая:<span class="lowest">...℃</span></p>
+                </div>
+            </div>
+
+            <div class="wind">
+                <h2>Ветер и прочее</h2>
+                <div class="row">
+                    <div class="compass">
+                        <svg>
+                            <polygon points="50,10 60,80 50,70 40,80"/>
+                        </svg>
+                    </div>
+                    <div class="info">
+                        <p>Скорость ветра <span class="windSpeed">...</span>m/s</p>
+                        <p>Облачность: <span class="clouds">...</span>%</p>
+                        <p>Влажность: <span class="humidity">...</span>%</p>
+                        <p>Давление: <span class="pressure">...</span>hPa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tomorrow">
+                <div class="row">
+                    <h2>Завтра</h2>
+                    <img src="http://openweathermap.org/img/wn/10d@4x.png" alt="loading...">
+                    <div class="info">
+                        <span class="town">loading...</span>
+                        <span class="description">loading...</span>
+                        <span class="temperature">...℃</span>
+                        <p>Ощущается как: <span class="feels">...℃</span></p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <p>Самая высокая:<span class="highest">...℃</span>;</p>
+                    <p>Самая низкая:<span class="lowest">...℃</span></p>
+                </div>
+            </div>
+
+            <div class="hourly">
+
+                <template id="hourTemplate">
+                    <div class="hour">
+                        <time class="hours">...</time>
+                        <time class="dayOfMonth">...</time>
+                        <div class="compass">
+                            <span>&#10145;</span>
+                        </div>
+                        <img src="http://openweathermap.org/img/wn/10d@4x.png" alt="">
+                        <span class="temperature">...℃</span>
+                        <span class="hum">Hum:<span class="humidity">...</span>%</span>
+                    </div>
+                </template>
+
+            </div>
+
+            <table class="weekly">
+
+                <template id="weeklyTemplate">
+                    <tr class="day">
+                        <td>
+                            <picture>
+                            <img src="http://openweathermap.org/img/wn/10d@4x.png" alt="loading...">
+                            </picture>
+                            <p><time class="dayOfWeek">loading...</time><time class="dayOfMonth">loading...</time></p>
+                        </td>
+                        <td>
+                            <span>Min:<span class="lowest">...℃</span>; </span>
+                            <span> Max:<span class="highest">...℃</span></span>
+                        </td>
+                    </tr>
+                </template>
+
+                <tbody></tbody>
+            </table>
+
+            <div class="map">
+                <p id="mapInit">Нажмите чтобы инициализировать карту...</p>
+                <div id="map"></div>
+            </div>
+
+            <div class="ad1">
+                ad1
+            </div>
+
+            <div class="ad2">
+                ad2
+            </div>
+        </div>
+    </section>
+
+    <section class="coronavirus" id="coronavirus">
+        <div class="container">
+            <h2>Свежая информация по коронавирусу</h2>
+            <p>Используйте погодный поиск чтобы также получить актуальную информацию про COVID-19 в вашем регионе</p>
+            <div class="results">
+                <div class="country">
+                    <table>
+                        <caption>Результаты в регионе</caption>
+                        <tr>
+                            <td>Случаев:</td>
+                            <td class="cases">loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Смертей:</td>
+                            <td class="deaths">loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Выздоровело:</td>
+                            <td class="recovered">loading...</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="world">
+                    <table>
+                        <caption>Результаты в мире</caption>
+                        <tr>
+                            <td>Случаев:</td>
+                            <td class="cases">loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Смертей:</td>
+                            <td class="deaths">loading...</td>
+                        </tr>
+                        <tr>
+                            <td>Выздоровело:</td>
+                            <td class="recovered">loading...</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <p class="info">
+                <a href="https://www.who.int/ru/emergencies/diseases/novel-coronavirus-2019/advice-for-public"> Официальные рекомендации от ВОЗ</a>: Помните, в случае, если в вашей местности зарегистрировано распространение COVID-19, соблюдайте простые меры предосторожности: держитесь на безопасной дистанции от окружающих, носите маску, хорошо проветривайте помещения, избегайте мест скопления людей, мойте руки и прикрывайте нос и рот сгибом локтя или салфеткой при кашле или чихании. Следите за рекомендациями для вашего населенного пункта и места работы. <strong>Делайте все возможное!</strong>
+            </p>
+            <div class="ad3">
+                ad3
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Weather Today© 2021</p>
+        <p>For contact: kanalqwesta@gmail.com</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
