@@ -364,7 +364,7 @@ function displayWeatherData(weatherData, locationName){
     let hourly = weather.querySelector('.hourly');
     let weekly = weather.querySelector('.weekly'); 
 
-    current.querySelector('img').setAttribute('src', `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@4x.png`);
+    current.querySelector('img').setAttribute('src', `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@4x.png`);
     current.querySelector('img').setAttribute('alt', weatherData.current.weather[0].main);
     current.querySelector('.town').textContent = locationName;
     current.querySelector('.description').textContent = weatherData.current.weather[0].description;
@@ -379,7 +379,7 @@ function displayWeatherData(weatherData, locationName){
     wind.querySelector('.humidity').textContent = weatherData.current.humidity;
     wind.querySelector('.pressure').textContent = weatherData.current.pressure;
 
-    tomorrow.querySelector('img').setAttribute('src', `http://openweathermap.org/img/wn/${weatherData.daily[1].weather[0].icon}@4x.png`);
+    tomorrow.querySelector('img').setAttribute('src', `https://openweathermap.org/img/wn/${weatherData.daily[1].weather[0].icon}@4x.png`);
     tomorrow.querySelector('img').setAttribute('alt', weatherData.daily[1].weather[0].main);
     tomorrow.querySelector('.town').textContent = locationName;
     tomorrow.querySelector('.description').textContent = weatherData.daily[1].weather[0].description;
@@ -400,7 +400,7 @@ function displayWeatherData(weatherData, locationName){
         element.querySelector('.hours').textContent = `${prettyDate(date.getHours())}:${prettyDate(date.getMinutes())}`;
         element.querySelector('.dayOfMonth').textContent = `${prettyDate(date.getDate())}.${prettyDate(date.getMonth() + 1)}`;
         element.querySelector('.compass').style.transform = `rotate(${hour.wind_deg - 90}deg)`;
-        element.querySelector('img').setAttribute('src', `http://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`);
+        element.querySelector('img').setAttribute('src', `https://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`);
         element.querySelector('img').setAttribute('alt', hour.weather[0].main);
         element.querySelector('.temperature').textContent = round(hour.temp) + metric;
         element.querySelector('.humidity').textContent = hour.humidity;
@@ -417,7 +417,7 @@ function displayWeatherData(weatherData, locationName){
         let element = weeklyTemplate.content.cloneNode(true);
         let date = new Date(day.dt * 1000);
 
-        element.querySelector('img').setAttribute('src', `http://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png`);
+        element.querySelector('img').setAttribute('src', `https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png`);
         element.querySelector('img').setAttribute('alt', day.weather[0].main);
         element.querySelector('.dayOfWeek').textContent = weekDays[date.getDay()];
         element.querySelector('.dayOfMonth').textContent = `${monthDays[date.getMonth()]} ${prettyDate(date.getDate())}`;
@@ -453,7 +453,7 @@ function initMap(latitude = 51.505, longitude = -0.09){
         maxZoom: 12,
     });
     
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
