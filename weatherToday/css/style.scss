@@ -393,6 +393,7 @@ header{
     // height: 500px;
     padding: 15px 0;
     position: relative;
+    overflow: hidden;
     background: $gradient;
     box-shadow: inset 0px 0px 15px 0px black;
     color: white;
@@ -660,7 +661,8 @@ header{
     
     .ad1{
         grid-area: ad1;
-        width: 200px;
+        min-width: 200px;
+        min-height: 200px;
     }
     
     .ad2{
@@ -669,9 +671,18 @@ header{
     }
 }
 
+.weather .container .ad1,
+.weather .container .ad2,
+.coronavirus .container .ad3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .coronavirus{
     position: relative;
     padding: 30px 0;
+    overflow: hidden;
     background: url(../img/covid.png);
     background-size: 100% 100%;
     box-shadow: inset 0px 0px 15px 0px black;
@@ -821,9 +832,10 @@ footer{
                 display: block;
                 position: absolute;
                 top: 10px;
-                right: 15px;
+                right: 0;
                 width: 50px;
                 height: 50px;
+                transform: scale(.6);
                 background-color: inherit;
                 background-image: url(../img/menu.png);
                 background-size: 100% 100%;

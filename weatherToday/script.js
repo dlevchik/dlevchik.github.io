@@ -19,7 +19,13 @@ const coronavirus = document.getElementById("coronavirus");
 const weather = document.getElementById('weather');
 const userLang = navigator.language || navigator.userLanguage; //not used
 let map;
-let historyArray;
+
+historyArray = JSON.parse(localStorage.getItem("historyArray"));
+    if (!historyArray){
+        localStorage.setItem("historyArray", JSON.stringify([]));
+        historyArray = JSON.parse(localStorage.getItem("historyArray"));
+    }
+
 const weekDays = [
     'Воскресенье',
     'Понедельник',
@@ -166,7 +172,6 @@ function initGeolocations(){
     })
 }
 
-updateHistory();
 function updateHistory(town){
     historyArray = JSON.parse(localStorage.getItem("historyArray"));
     if (!historyArray){
@@ -224,8 +229,14 @@ function searchAndDisplayByName(query){
 
     autoComplete(query)
     .then((response) => {
-        log(response);
+        if(!response[0]) {
+            weather.querySelector('.loading').remove();
+            coronavirus.querySelector('.loading').remove();
+            throw new Error('no results');
+        }
 
+        log(response);
+    
         getCoronavirusData(response[0].country.id)
             .then((coronavirusData) => {
                 log(coronavirusData);
@@ -492,6 +503,7 @@ function searchAndDisplayByCoordinates(latitude, longitude){
 
     getGeocode(`${latitude},${longitude}`)
     .then(geocode =>{
+        if(!geocode.results) return;
         log(geocode);
 
         getCoronavirusData(geocode.results[0].components.country_code)
@@ -519,7 +531,7 @@ function searchAndDisplayByCoordinates(latitude, longitude){
 
 function log(...message){
     if(logging){
-        console.log(...message);
+        console.log(message);
     }
 }
 

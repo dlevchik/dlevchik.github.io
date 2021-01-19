@@ -1,7 +1,8 @@
 @import url(normalize.css);
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
 * {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 body, html {
   padding: 0;
@@ -10,11 +11,15 @@ body, html {
   font-family: 'Noto Sans', sans-serif; }
 
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 80%;
   height: 100%;
   margin: 0 auto;
-  justify-content: space-between; }
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
 
 header {
   position: fixed;
@@ -27,9 +32,13 @@ header {
   header .menu {
     display: none; }
   header .logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 10px 0;
-    align-items: center; }
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     header .logo h1 {
       padding: 0;
       margin: 0;
@@ -40,17 +49,25 @@ header {
       width: 50px;
       height: 50px; }
   header nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 0;
     height: 100%;
-    align-items: center; }
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     header nav ul li {
       height: 100%;
       list-style: none;
       cursor: pointer; }
       header nav ul li a {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         justify-items: center;
         height: 100%;
         width: 100%;
@@ -58,6 +75,7 @@ header {
         color: inherit;
         text-decoration: none;
         font-size: 1.2rem;
+        -webkit-transition: background-color .3s;
         transition: background-color .3s; }
         header nav ul li a:hover {
           background-color: white;
@@ -65,8 +83,12 @@ header {
         header nav ul li a span {
           color: red; }
   header .search {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     opacity: 0; }
     header .search .container {
       display: block;
@@ -77,7 +99,8 @@ header {
       padding: 5px 0 5px 7px;
       border: none;
       border-radius: 3px;
-      box-shadow: 10px 10px 20px -10px black;
+      -webkit-box-shadow: 10px 10px 20px -10px black;
+              box-shadow: 10px 10px 20px -10px black;
       cursor: default; }
       header .search input:focus {
         outline: none; }
@@ -90,11 +113,15 @@ header {
     background-color: #252525;
     z-index: 11; }
     header .bigSearch .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       width: 80%;
       height: 100%;
       margin: 0 auto;
-      justify-content: space-between; }
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between; }
     header .bigSearch input {
       background: inherit;
       width: 100%;
@@ -103,7 +130,8 @@ header {
       border: none;
       border-bottom: 2px solid #018096;
       border-radius: 0;
-      box-shadow: none;
+      -webkit-box-shadow: none;
+              box-shadow: none;
       color: white; }
   header .searchResults {
     display: block;
@@ -111,7 +139,8 @@ header {
     width: 100%;
     padding: 15px 0;
     background-color: #252525;
-    box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black;
+    -webkit-box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black;
+            box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black;
     color: white; }
     header .searchResults.hidden {
       display: none; }
@@ -128,6 +157,7 @@ header {
       font-size: 1.3rem; }
       header .searchResults .resultsContainer .results a {
         color: white;
+        -webkit-transition: color .2s;
         transition: color .2s; }
         header .searchResults .resultsContainer .results a:hover {
           color: #018096; }
@@ -135,17 +165,29 @@ header {
       color: gray;
       margin: 10px 0; }
     header .searchResults .history {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column;
-      align-items: center; }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
       header .searchResults .history h2 {
         color: gray; }
       header .searchResults .history a {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         padding: 0px 15px;
         margin: 0 15px;
         font-size: 1.3rem;
+        -webkit-transition: color .2s;
         transition: color .2s; }
         header .searchResults .history a:hover {
           color: #018096; }
@@ -157,10 +199,12 @@ header {
         padding: 0;
         margin: 0 0 0 20px; }
   header.open {
+    -webkit-transition: background-color .3s;
     transition: background-color .3s;
     border-bottom: 1px solid gray;
     background-color: rgba(0, 0, 0, 0.3);
-    box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black; }
+    -webkit-box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black;
+            box-shadow: inset 0px 85px 30px -68px black, 0px 3px 10px 0px black; }
     header.open form.search {
       opacity: 1; }
 
@@ -171,9 +215,16 @@ header {
   background: url(../img/mountains.jpg);
   background-size: 100% 100%; }
   .bigScreen .container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
   .bigScreen .info {
     margin: 0;
     color: white;
@@ -193,7 +244,8 @@ header {
       padding: 10px 15px 10px 40px;
       border: none;
       border-radius: 5px;
-      box-shadow: 10px 10px 20px -10px black; }
+      -webkit-box-shadow: 10px 10px 20px -10px black;
+              box-shadow: 10px 10px 20px -10px black; }
       .bigScreen form input:focus {
         outline: none;
         border: none; }
@@ -233,6 +285,7 @@ header {
           text-decoration: none;
           color: black;
           cursor: pointer;
+          -webkit-transition: background-color .2s, color .2s;
           transition: background-color .2s, color .2s; }
           .bigScreen form .resultsContainer li a:hover, .bigScreen form .resultsContainer li .button:hover {
             background-color: #018096;
@@ -242,16 +295,23 @@ header {
           border-top: 2px solid #018096;
           color: #018096; }
   .bigScreen .history {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex; }
     .bigScreen .history a {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       padding: 0px 15px;
       margin: 0 15px;
       border-radius: 5px;
       background: linear-gradient(125deg, #02718c 50%, #3dc9c0 100%);
       color: white;
-      box-shadow: 10px 10px 20px -10px black;
+      -webkit-box-shadow: 10px 10px 20px -10px black;
+              box-shadow: 10px 10px 20px -10px black;
       text-decoration: none;
       opacity: 0.9; }
       .bigScreen .history a .town {
@@ -268,12 +328,15 @@ header {
   width: 100%;
   padding: 15px 0;
   position: relative;
+  overflow: hidden;
   background: linear-gradient(125deg, #02718c 50%, #3dc9c0 100%);
-  box-shadow: inset 0px 0px 15px 0px black;
+  -webkit-box-shadow: inset 0px 0px 15px 0px black;
+          box-shadow: inset 0px 0px 15px 0px black;
   color: white; }
   .weather .loading {
     background: linear-gradient(125deg, #02718c 50%, #3dc9c0 100%);
-    box-shadow: inset 0px 0px 15px 0px black; }
+    -webkit-box-shadow: inset 0px 0px 15px 0px black;
+            box-shadow: inset 0px 0px 15px 0px black; }
   .weather .container {
     margin-top: 15px;
     display: grid;
@@ -283,13 +346,21 @@ header {
   .weather .container > div, .weather .container > table {
     padding: 10px 15px;
     background-color: rgba(1, 128, 150, 0.6);
-    box-shadow: 10px 10px 20px -10px black; }
+    -webkit-box-shadow: 10px 10px 20px -10px black;
+            box-shadow: 10px 10px 20px -10px black; }
   .weather .current,
   .weather .tomorrow,
   .weather .wind {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     min-width: 300px; }
     .weather .current h2,
     .weather .tomorrow h2,
@@ -302,8 +373,12 @@ header {
     .weather .current .row,
     .weather .tomorrow .row,
     .weather .wind .row {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       position: relative; }
     .weather .current img,
     .weather .tomorrow img,
@@ -327,8 +402,13 @@ header {
     .weather .current .info,
     .weather .tomorrow .info,
     .weather .wind .info {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column; }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
       .weather .current .info .temperature,
       .weather .tomorrow .info .temperature,
       .weather .wind .info .temperature {
@@ -347,9 +427,15 @@ header {
     .weather .wind h2 {
       position: static; }
     .weather .wind .compass {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       position: relative;
       width: 100px;
       height: 100px;
@@ -365,6 +451,8 @@ header {
         stroke-width: 2px; }
   .weather .hourly {
     grid-area: hourly;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     overflow-x: scroll; }
     .weather .hourly::-webkit-scrollbar {
@@ -374,11 +462,19 @@ header {
     .weather .hourly::-webkit-scrollbar-thumb {
       background-color: gray;
       border-radius: 10px;
-      box-shadow: inset 3px 3px 5px 0px #FFFFFF; }
+      -webkit-box-shadow: inset 3px 3px 5px 0px #FFFFFF;
+              box-shadow: inset 3px 3px 5px 0px #FFFFFF; }
     .weather .hourly .hour {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       padding: 0 10px;
       border-right: 2px solid gray; }
       .weather .hourly .hour:last-child {
@@ -391,7 +487,8 @@ header {
         border: 1px solid #c2c2c2;
         border-radius: 50%;
         background-color: #018096;
-        transform: rotate(60deg); }
+        -webkit-transform: rotate(60deg);
+                transform: rotate(60deg); }
       .weather .hourly .hour img {
         height: 50px;
         width: 50px;
@@ -404,16 +501,28 @@ header {
     padding: 0 10px;
     position: relative; }
     .weather .container .weekly .day {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
       padding: 10px 0;
       border-bottom: 2px solid gray; }
       .weather .container .weekly .day td {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex; }
       .weather .container .weekly .day picture {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         justify-items: center;
         width: 30px;
         height: 30px;
@@ -425,8 +534,13 @@ header {
         .weather .container .weekly .day picture:last-child {
           border-bottom: none; }
       .weather .container .weekly .day p {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         margin: 0;
         margin-right: 10px;
         padding: 0; }
@@ -445,9 +559,15 @@ header {
       width: 100%;
       height: 100%;
       margin: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
       background-color: #c2c2c2;
       color: gray;
       cursor: pointer; }
@@ -459,21 +579,42 @@ header {
       z-index: 2; }
   .weather .ad1 {
     grid-area: ad1;
-    width: 200px; }
+    min-width: 200px;
+    min-height: 200px; }
   .weather .ad2 {
     grid-area: ad2;
     height: 200px; }
 
+.weather .container .ad1,
+.weather .container .ad2,
+.coronavirus .container .ad3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
 .coronavirus {
   position: relative;
   padding: 30px 0;
+  overflow: hidden;
   background: url(../img/covid.png);
   background-size: 100% 100%;
-  box-shadow: inset 0px 0px 15px 0px black;
+  -webkit-box-shadow: inset 0px 0px 15px 0px black;
+          box-shadow: inset 0px 0px 15px 0px black;
   color: white; }
   .coronavirus .container {
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     justify-items: center; }
   .coronavirus h2 {
     margin: 15px auto;
@@ -481,9 +622,14 @@ header {
     padding-bottom: 5px;
     border-bottom: 3px solid rgba(1, 128, 150, 0.6); }
   .coronavirus .results {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
     width: 100%; }
     .coronavirus .results table {
       font-size: 1.3rem;
@@ -516,9 +662,16 @@ header {
     background-color: rgba(1, 128, 150, 0.6); }
 
 footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 15px;
   background: linear-gradient(125deg, #02718c 50%, #3dc9c0 100%);
   color: white; }
@@ -527,9 +680,15 @@ footer {
     margin: 0; }
 
 .loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -560,14 +719,18 @@ footer {
   header.open {
     background-color: #252525; }
     header.open nav ul {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex; }
     header.open .menu {
       display: block;
       position: absolute;
       top: 10px;
-      right: 15px;
+      right: 0;
       width: 50px;
       height: 50px;
+      -webkit-transform: scale(0.6);
+              transform: scale(0.6);
       background-color: inherit;
       background-image: url(../img/menu.png);
       background-size: 100% 100%;
@@ -577,18 +740,28 @@ footer {
         border: none; }
 
   header .container {
-    flex-direction: column;
-    align-items: center; }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     header .container nav ul {
       display: none;
-      flex-direction: column;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
       width: 100%;
       padding: 0; }
       header .container nav ul li {
         width: 100%;
         height: 50px; }
         header .container nav ul li a {
-          justify-content: center; }
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center; }
     header .container form.search {
       display: none;
       width: 100%; }
@@ -604,14 +777,23 @@ footer {
   header.open.menuOpen form.search {
     display: block; }
   header.open.menuOpen nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex; }
   header.open.menuOpen .menu {
     background-image: url(../img/close.png); }
 
   header .searchResults .resultsContainer .results {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center; }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     header .searchResults .resultsContainer .results p {
       margin: 0; }
 
@@ -625,12 +807,20 @@ footer {
   section.bigScreen {
     height: 70vmax; }
     section.bigScreen .history {
-      flex-direction: column; }
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
       section.bigScreen .history a {
         margin: 5px 0; }
 
   section.coronavirus .results {
-    flex-direction: column;
-    align-items: center; } }
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; } }
 
 /*# sourceMappingURL=style.css.map */
