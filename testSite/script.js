@@ -78,7 +78,7 @@ function getRandomCat() {
 }//img.setAttribute("src", response[0].url)
 
 const telegram = document.getElementById("telegram");
-const botUrl = new URL("https://api.telegram.org/bot841759352:AAExQlOJDQH9pvvdA9V7mEbWb_6JtFL2FM4/");
+const botUrl = new URL("https://api.telegram.org/bot841759352:AAHAVQGkvfyYym9twOtID4CxalccbJgRIrE/");
 const botMessageUrl = new URL(botUrl + "sendMessage");
 botMessageUrl.searchParams.set("chat_id", "479750895");
 const TGresults = document.getElementById("TGresults");
