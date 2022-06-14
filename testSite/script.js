@@ -27,7 +27,7 @@ document.addEventListener("contextmenu", (event) =>{
     turbine.setAttribute("src", "https://thumbs.gfycat.com/PlainSoreEagle-small.gif");
     document.body.append(turbine);
 
-    let turbineSound = new Audio("09038.mp3");
+    let turbineSound = new Audio("audio_2022-06-14_14-13-12.mp3");
     turbineSound.play(); //Please don't ask
 
     turbine.style.cssText = `position: fixed; top: ${event.clientY}px; left: ${event.clientX}px; border: 1px solid gray; height: 100px;`;
